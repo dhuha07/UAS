@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="C:\Users\dhuha\Downloads\p.png"/>
+<title>Halaman Utama</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('C:\Users\dhuha\Downloads\p.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    animation: fadeIn 1s ease-in;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .header {
+    background-color: #3366ff;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    transition: background-color 0.3s;
+  }
+  .header:hover {
+    background-color: #294dbb;
+  }
+  .header-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .nav-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #313bc0;
+    padding: 20px 0;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    transition: left 0.3s ease, background-color 0.3s;
+    border-right: 2px solid white;
+    overflow-y: auto;
+    touch-action: pan-y;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+  .nav-bar.active {
+    left: 0;
+  }
+  .nav-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    margin: 30px 10px;
+    font-size: 16px;
+  }
+  .nav-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .nav-button + .nav-button {
+    margin-top: 20px;
+  }
+  .content-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    margin: 80px 20px 20px 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: slideIn 0.5s ease-in;
+    backdrop-filter: blur(10px);
+  }
+  @keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  footer {
+    background-color: #3366ff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+  }
+  footer:hover {
+    background-color: #294dbb;
+  }
+  .hamburger {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .hamburger:focus {
+    outline: none;
+  }
+  .hamburger:hover {
+    color: lightgrey;
+    transform: scale(1.1);
+  }
+  .hamburger.active {
+    transform: rotate(90deg);
+  }
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  .close-btn:hover {
+    color: lightgrey;
+  }
+  @media (max-width: 768px) {
+    .nav-bar {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      left: 0;
+    }
+    .header {
+      justify-content: flex-start;
+      padding-left: 10px;
+    }
+  }
+  footer p {
+    font-size: 12px;
+  }
+  .content-box ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .content-box ul li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 5px solid #3366ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .content-box ul li:before {
+    content: "★";
+    color: #ffd700;
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+  }
+  .content-box ul li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .content-box ul li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+</style>
+</head>
+<body>
+<script>
+  function toggleNav() {
+    const navBar = document.querySelector('.nav-bar');
+    const hamburger = document.querySelector('.hamburger');
+    navBar.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  }
+
+  function closeNav() {
+    const navBar = document.querySelector('.nav-bar');
+    const hamburger = document.querySelector('.hamburger');
+    navBar.classList.remove('active');
+    hamburger.classList.remove('active');
+  }
+</script>
+
+<div class="header">
+  <button class="hamburger" onclick="toggleNav()">☰</button>
+  <span class="header-text">Halaman Utama</span>
+</div>
+
+<div class="nav-bar">
+  <button class="close-btn" onclick="closeNav()">×</button>
+  <button class="nav-button" onclick="location.href='akun.html'">Akun</button>
+  <button class="nav-button" onclick="location.href='Bpkp.html'">BPKB</button>
+  <button class="nav-button" onclick="location.href='tilang.html'">Cek Tilang</button>
+  <button class="nav-button" onclick="location.href='pajak.html'">Pajak Kendaraan</button>
+  <button class="nav-button" onclick="location.href='Sim.html'">Perpanjang Sim</button>
+  <button class="nav-button" onclick="location.href='stnk.html'">Perpanjang STNK</button>
+  <button class="nav-button" onclick="location.href='Register.html'">Logout</button>
+</div>
+
+<div class="content-box">
+  <h2>Selamat Datang di SAMSAT ONLINE SAMSOL</h2>
+  <p>Kami hadir untuk memudahkan Anda dalam mengurus berbagai hal terkait kendaraan bermotor.</p>
+  <p>Berikut adalah beberapa fitur yang dapat Anda akses di website kami:</p>
+  <ul>
+    <li><a href="Sim.html">Perpanjang SIM: Anda dapat memperpanjang masa berlaku SIM A atau SIM C secara online. Isi data yang diperlukan, unggah foto KTP, dan lakukan pembayaran. SIM baru akan dikirimkan ke alamat Anda.</a></li>
+    <li><a href="stnk.html">Perpanjang STNK: Anda dapat memperpanjang STNK secara online. Isi data yang diperlukan, unggah foto KTP, dan lakukan pembayaran. STNK baru akan dikirimkan ke alamat Anda.</a></li>
+    <li><a href="Bpkp.html">Perpanjang BPKB: Perpanjang masa berlaku BPKB kendaraan Anda. Isi data kendaraan dan unggah dokumen yang diminta. BPKB baru akan diterbitkan.</a></li>
+    <li><a href="pajak.html">Bayar Pajak Kendaraan: Cek besaran pajak kendaraan Anda. Lakukan pembayaran melalui metode yang tersedia (ATM, mobile banking, dll.). Dapatkan bukti pembayaran.</a></li>
+    <li><a href="tilang.html">Cek Tilang Elektronik: Periksa apakah kendaraan Anda memiliki tilang elektronik. Masukkan nomor registrasi kendaraan dan lihat informasi tilang yang tercatat.</a></li>
+  </ul>
+</div>
+
+<footer>
+  <p>© Hak cipta oleh RPL 2024</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Struk Transaksi SAMSOL</title>
+<link rel="icon" type="image/png" href="C:/Users/dhuha/Downloads/p.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0f7fa;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .receipt-container {
+    background-color: #fff;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .receipt-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #0097a7;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    font-size: 18pt;
+    color: #007bff;
+  }
+  .header img {
+    max-width: 100px;
+    margin-bottom: 10px;
+  }
+  .receipt-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #616161;
+  }
+  .receipt-body p {
+    margin: 8px 0;
+  }
+  .receipt-body p strong {
+    color: #00796b;
+  }
+  .total {
+    color: #007bff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .receipt-footer {
+    font-size: 12px;
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+  }
+  .back-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 12px 24px;
+    text-align: center;
+    background-color: #0097a7;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .back-button:hover {
+    background-color: #00796b;
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+<div class="receipt-container">
+  <div class="header">
+    <img src="C:/Users/dhuha/Downloads/p.png" alt="Logo Samsat Online">
+  </div>
+  <div class="receipt-body">
+    <p><strong>Tanggal Transaksi:</strong> <span style="float:right">08 Mar 2021 | 22:55 WIB</span></p>
+    <p><strong>Nomor Referensi:</strong> <span style="float:right">119317220118</span></p>
+    <!-- Other details go here -->
+    <p><strong>Nama Tujuan:</strong> <span style="float:right">[Nama Tujuan]</span></p>
+    <!-- Redacted information would be placed here -->
+    <p><strong>Nominal Transfer:</strong> <span style="float:right">Rp100.000,00</span></p>
+    <p><strong>Biaya Admin:</strong> <span style="float:right">Rp0,00</span></p>
+    <p class="total"><strong>Total:</strong> <span style="float:right">Rp100.000,00</span></p>
+  </div>
+  <div class="receipt-footer">
+    <p>2020 PT Bank Rakyat Indonesia (Persero) Tbk.</p>
+    <p>Terdaftar dan diawasi oleh Otoritas Jasa Keuangan</p>
+  </div>
+  <a href="HTML.html" class="back-button">Kembali ke Halaman Utama</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="C:\Users\dhuha\Downloads\p.png"/>
+    <title>Akun</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('URL_GAMBAR_LATAR_BELAKANG');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background-color: #3366ff;
+            color: white;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .header-text {
+            order: 1;
+            font-size: 1.5em;
+        }
+        .nav-bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: rgb(39, 33, 223);
+            padding: 10px 0;
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s ease;
+            border-right: 2px solid white;
+            overflow-y: auto;
+            touch-action: pan-y;
+            z-index: 1;
+        }
+        .nav-bar.active {
+            left: 0;
+        }
+        .nav-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+            margin: 30px 10px;
+        }
+        .nav-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #3366ff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .hamburger {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .hamburger:focus {
+            outline: none;
+        }
+        .hamburger:hover {
+            color: lightgrey;
+            transform: scale(1.1);
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            color: lightgrey;
+        }
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                left: 0;
+            }
+        }
+        .edit-form {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .edit-form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .edit-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .edit-button, .save-button, .cancel-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-right: 10px;
+        }
+        .edit-button:hover, .save-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        .cancel-button {
+            background-color: #ccc;
+            color: #333;
+        }
+        .cancel-button:hover {
+            background-color: #aaa;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+        .edit-form.show {
+            display: block;
+            animation: fadeIn 0.3s ease forwards;
+        }
+        .edit-form.hide {
+            animation: fadeOut 0.3s ease forwards;
+        }
+        footer p {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const navBar = document.querySelector('.nav-bar');
+        let isDragging = false;
+        let initialY;
+        let currentY;
+
+        navBar.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            initialY = e.clientY - navBar.scrollTop;
+        });
+
+        navBar.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                currentY = e.clientY - initialY;
+                navBar.scrollTop = currentY;
+            }
+        });
+
+        navBar.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        function toggleNav() {
+  const navBar = document.querySelector('.nav-bar');
+  const hamburger = document.querySelector('.hamburger');
+  navBar.classList.toggle('active');
+  hamburger.classList.toggle('active');
+}
+
+function closeNav() {
+  const navBar = document.querySelector('.nav-bar');
+  const hamburger = document.querySelector('.hamburger');
+  navBar.classList.remove('active');
+  hamburger.classList.remove('active');
+}
+
+        function showEditForm() {
+            const editForm = document.querySelector('.edit-form');
+            editForm.classList.add('show');
+            editForm.classList.remove('hide');
+        }
+
+        function hideEditForm() {
+            const editForm = document.querySelector('.edit-form');
+            editForm.classList.add('hide');
+            editForm.classList.remove('show');
+        }
+
+        function saveChanges() {
+            const fullName = document.getElementById('full-name').value;
+            const address = document.getElementById('address').value;
+            const phoneNumber = document.getElementById('number').value;
+
+            if (fullName === '' || address === '' || phoneNumber === '') {
+                alert('Harap isi semua bidang.');
+                return false;
+            }
+
+            hideEditForm();
+            return true;
+        }
+    </script>
+
+    <div class="header">
+        <button class="hamburger" onclick="toggleNav()">☰</button>
+        <span class="header-text">Akun</span>
+    </div>
+
+    <div class="nav-bar">
+        <button class="close-btn" onclick="closeNav()">×</button>
+        <button class="nav-button" onclick="location.href='sim.html'">SIM</button>
+        <button class="nav-button" onclick="location.href='stnk.html'">STNK</button>
+        <button class="nav-button" onclick="location.href='Bpkp.html'">BPKB</button>
+        <button class="nav-button" onclick="location.href='pajak.html'">Pajak kendaraan</button>
+        <button class="nav-button" onclick="location.href='tilang.html'">Cek Tilang</button>
+        <button class="nav-button" onclick="location.href='HTML.html'">Beranda</button>
+        <button class="nav-button" onclick="location.href='Register.html'">Logout</button>
+
+    </div>
+
+    <div class="content-box">
+        <p>Selamat Datang di SAMSAT ONLINE SAMSOL. Berikut adalah informasi akun Anda:</p>
+        <p>Nama: John Doe</p>
+        <p>Alamat: Jalan Contoh No. 123</p>
+        <p>Nomor Telepon: 081234567890</p>
+
+        <button class="edit-button" onclick="showEditForm()">Edit Biodata</button>
+
+        <form class="edit-form" onsubmit="return saveChanges()">
+            <label for="full-name">Nama Lengkap:</label>
+            <input type="text" id="full-name" name="full-name" required>
+            <label for="address">Alamat:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="number">Nomor Telepon:</label>
+            <input type="tel" id="number" name="number" pattern="[0-9]{10}" required>
+            <button type="submit" class="save-button">Simpan Perubahan</button>
+            <button type="button" class="cancel-button" onclick="hideEditForm()">Batal</button>
+        </form>
+    </div>
+    
+
+    <footer>
+        <p>© Hak cipta oleh RPL 2024</p>
+    </footer>
+</body>
+</html>

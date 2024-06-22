@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="C:\Users\dhuha\Downloads\p.png"/>
+<title>Halaman Login</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    animation: slideIn 0.5s ease-in-out;
+    text-align: center;
+  }
+  @keyframes slideIn {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  h2 {
+    color: #333;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #4cae4c;
+  }
+  .login-container img {
+    max-width: 100px; /* Atur ukuran maksimal gambar */
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .register-link {
+    margin-top: 10px;
+    color: #5cb85c;
+    text-decoration: none;
+    font-size: 0.9em; /* Sesuaikan ukuran font */
+  }
+  .register-link:hover {
+    text-decoration: underline;
+  }
+  .error {
+    color: red;
+    font-size: 0.9em;
+    display: none;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <img src="C:\Users\dhuha\Downloads\p.png" alt="Logo">
+    <form id="registerForm">
+      <input type="text" placeholder="Masukkan username anda" required>
+      <input type="password" id="password" placeholder="Masukkan Password" required>
+      <input type="password" id="confirmPassword" placeholder="Konfirmasi Password" required>
+      <div class="error" id="errorMessage">Pastikan password sama</div>
+      <button type="submit">Login</button>
+    </form>
+    <a href="register.html" class="register-link">Belum Punya Akun?</a>
+  </div>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Mencegah form submission default
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorMessage = document.getElementById('errorMessage');
+
+      if (password !== confirmPassword) {
+        errorMessage.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'none';
+        window.location.href = 'HTML.html'; // Arahkan ke halaman login
+      }
+    });
+  </script>
+</body>
+</html>

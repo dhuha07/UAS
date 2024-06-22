@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bukti Tilang</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #7F7FD5, #86A8E7, #91EAE4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .bukti-container {
+    width: 80%;
+    max-width: 600px;
+    background-color: #f0f0f0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .bukti-header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+  }
+  .bukti-header h2 {
+    margin: 0;
+  }
+  .bukti-body {
+    padding: 20px;
+  }
+  .bukti-detail {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  .bukti-footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    background-color: #f8f9fa;
+  }
+  .button {
+    display: inline-block;
+    background-color: #17a2b8;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  .button:hover {
+    background-color: #138496;
+    transform: translateY(-3px);
+  }
+</style>
+</head>
+<body>
+  <div class="bukti-container">
+    <div class="bukti-header">
+      <h2>Bukti Tilang</h2>
+    </div>
+    <div class="bukti-body">
+      <div class="bukti-detail">
+        <strong>Nomor Plat Kendaraan:</strong> ABC 1234
+      </div>
+      <div class="bukti-detail">
+        <strong>Nomor Rangka:</strong> 1234567890
+      </div>
+      <div class="bukti-detail">
+        <strong>Nomor Mesin:</strong> E1234567890
+      </div>
+      <div class="bukti-detail">
+        <strong>Tanggal Tilang:</strong> 22 Juni 2024
+      </div>
+      <div class="bukti-detail">
+        <strong>Jenis Pelanggaran:</strong> Melanggar Batas Kecepatan
+      </div>
+    </div>
+    <div class="bukti-footer">
+      <p>Terima kasih atas kerjasama Anda.</p>
+      <a href="HTML.html" class="button">Kembali ke Beranda</a>
+    </div>
+  </div>
+</body>
+</html>

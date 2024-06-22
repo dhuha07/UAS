@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="C:\Users\dhuha\Downloads\p.png"/>
+  <title>Halaman Registrasi</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      animation: slideIn 0.5s ease-in-out;
+      text-align: center;
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    h2 {
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 100%; /* Lebar input mengisi seluruh container */
+      box-sizing: border-box; /* Biar padding tidak menambah lebar */
+    }
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #5cb85c;
+      color: white;
+      cursor: pointer;
+      width: 100%; /* Lebar button mengisi seluruh container */
+      box-sizing: border-box; /* Biar padding tidak menambah lebar */
+    }
+    button:hover {
+      background-color: #4cae4c;
+    }
+    .login-container img {
+      max-width: 100px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .register-link {
+      margin-top: 10px;
+      color: #5cb85c;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+    .register-link:hover {
+      text-decoration: underline;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Register</h2>
+    <img src="C:\Users\dhuha\Downloads\p.png" alt="Logo">
+    <form id="registerForm">
+      <input type="text" placeholder="Masukkan username anda" required>
+      <div style="position: relative;">
+        <input type="password" id="password" placeholder="Masukkan Password" required>
+        <span class="password-toggle" onclick="togglePasswordVisibility('password')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.893 7.553a15.53 15.53 0 0 0-2.05-2.094l-.686.685a2 2 0 0 0-2.646 2.646l.685.686a15.53 15.53 0 0 0 2.094 2.05l.001.001a1.5 1.5 0 0 0 2.12-2.12l-.001-.001zm-4.56 2.462a3.5 3.5 0 0 1-4.95-4.95l.708.707a2.5 2.5 0 0 0 3.535 3.535l.707.707zm-.707-.707a2.5 2.5 0 0 0-3.535-3.535l.707.707a1.5 1.5 0 0 1 2.121 2.121l-.708-.708z"/>
+            <path fill-rule="evenodd" d="M1 8a7 7 0 0 1 11.956-4.95l.708.707A8 8 0 0 0 0 8a8 8 0 0 0 13.665 5.243l.708.707A7 7 0 0 1 1 8zm8 2a4 4 0 1 0-8 0 4 4 0 0 0 8 0z"/>
+          </svg>
+        </span>
+      </div>
+      <div style="position: relative;">
+        <input type="password" id="confirmPassword" placeholder="Konfirmasi Password" required>
+        <span class="password-toggle" onclick="togglePasswordVisibility('confirmPassword')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.893 7.553a15.53 15.53 0 0 0-2.05-2.094l-.686.685a2 2 0 0 0-2.646 2.646l.685.686a15.53 15.53 0 0 0 2.094 2.05l.001.001a1.5 1.5 0 0 0 2.12-2.12l-.001-.001zm-4.56 2.462a3.5 3.5 0 0 1-4.95-4.95l.708.707a2.5 2.5 0 0 0 3.535 3.535l.707.707zm-.707-.707a2.5 2.5 0 0 0-3.535-3.535l.707.707a1.5 1.5 0 0 1 2.121 2.121l-.708-.708z"/>
+            <path fill-rule="evenodd" d="M1 8a7 7 0 0 1 11.956-4.95l.708.707A8 8 0 0 0 0 8a8 8 0 0 0 13.665 5.243l.708.707A7 7 0 0 1 1 8zm8 2a4 4 0 1 0-8 0 4 4 0 0 0 8 0z"/>
+          </svg>
+        </span>
+      </div>
+      <div class="error" id="errorMessage">Pastikan password sama</div>
+      <button type="submit">Register</button>
+    </form>
+    <a href="login.html" class="register-link">Sudah Punya Akun?</a>
+  </div>
+  <script>
+    function togglePasswordVisibility(id) {
+      const input = document.getElementById(id);
+      const icon = event.target.closest('span').querySelector('svg');
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+      } else {
+        input.type = "password";
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+      }
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Mencegah form submission default
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorMessage = document.getElementById('errorMessage');
+
+      if (password !== confirmPassword) {
+        errorMessage.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'none';
+        window.location.href = 'login.html'; // Arahkan ke halaman login
+      }
+    });
+  </script>
+</body>
+</html>

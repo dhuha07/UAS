@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="C:\Users\dhuha\Downloads\p.png"/>
+<title>Cek Tilang</title>
+<style>
+  /* CSS untuk styling umum */
+  body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+  }
+
+  .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .header {
+      background-color: #3366ff;
+      color: #fff;
+      padding: 10px; 
+      text-align: center;
+      border-radius: 7px 7px 0 0;
+      font-size: 18px; 
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="file"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-bottom: 2px solid #ddd;
+      outline: none;
+      font-size: 16px;
+  }
+
+  input[type="text"]:hover,
+  input[type="date"]:hover,
+  input[type="file"]:hover {
+      border-bottom: 2px solid #aaa;
+  }
+
+  .button {
+      background-color: #4cc250;
+      color: white;
+      padding: 15px 20px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 16px;
+  }
+
+  .button:hover {
+      background-color: #45a049;
+      transform: translateY(-3px);
+  }
+
+  .back-button {
+      background-color: #333;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .back-button:hover {
+      background-color: #555;
+      transform: translateY(-3px);
+  }
+
+  .navigation-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+  }
+
+  .buttonCustom {
+      margin: 0 5px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .buttonCustom:hover {
+      background-color: #0056b3;
+      transform: translateY(-3px);
+  }
+
+  .hamburger {
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+  }
+
+  .hamburger:focus {
+      outline: none;
+  }
+
+  .hamburger:hover {
+      color: lightgrey;
+      transform: scale(1.1);
+  }
+
+  .hamburger.active {
+      transform: rotate(90deg);
+  }
+
+  .nav-bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-color: rgba(39, 33, 223, 1);
+      padding: 10px 0;
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      transition: left 0.3s ease;
+      border-right: 2px solid white;
+      overflow-y: auto;
+      touch-action: pan-y;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-bar.active {
+      left: 0;
+  }
+
+  .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5em;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+  }
+
+  .close-btn:hover {
+      opacity: 1;
+  }
+
+  .nav-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      text-align: center;
+      margin: 20px;
+  }
+
+  .nav-button:hover {
+      background-color: #313bc0;
+      transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+      .nav-bar {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          left: 0;
+      }
+      .header {
+          justify-content: flex-start;
+          padding-left: 10px;
+      }
+  }
+
+  footer p {
+      font-size: 12px;
+  }
+
+  .logo {
+      width: 85px;
+      height: auto;
+  }
+
+  .button-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -10px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animasi untuk elemen welcome */
+  .welcome-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      animation: fadeIn 1s ease-out;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+  }
+
+  .welcome-heading {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #333;
+      animation: fadeIn 1s ease-out;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+
+  .welcome-subheading {
+      font-size: 1.5em;
+      color: #666;
+      animation: fadeIn 1s ease-out;
+      font-family: 'Courier New', Courier, monospace;
+  }
+
+  .welcome-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+  }
+
+  .form-wrapper {
+      animation: slideUp 1s ease-in-out;
+  }
+
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <button class="hamburger" onclick="toggleNav()">☰</button>
+    <img src="C:\Users\dhuha\Downloads\p.png" alt="Logo SAMSOL" class="logo">
+    <p>Menu Cek Tilang</p>
+  </div>
+  <div class="nav-bar">
+    <button class="close-btn" onclick="closeNav()">×</button>
+    <button class="nav-button" onclick="location.href='akun.html'">Akun</button>
+    <button class="nav-button" onclick="location.href='bpkp.html'">BPKB</button>
+    <button class="nav-button" onclick="location.href='pajak.html'">Pajak Kendaraan</button>
+    <button class="nav-button" onclick="location.href='sim.html'">Perpanjang SIM</button>
+    <button class="nav-button" onclick="location.href='stnk.html'">Perpanjang STNK</button>
+    <button class="nav-button" onclick="location.href='HTML.html'">Beranda</button>
+    <button class="nav-button" onclick="location.href='Register.html'">Logout</button>
+  </div>
+ <div class="container">
+  <form id="tilangForm" onsubmit="return validateForm()">
+    <input type="text" id="plat_kendaraan" name="plat_kendaraan" placeholder="Plat Kendaraan">
+    <input type="text" id="Nomor_Mesin" name="Nomor_mesin" placeholder="Nomor Mesin">
+    <input type="text" id="Nomor_rangka" name="Nomor_rangka" placeholder="Nomor Rangka">
+    <input type="submit" value="Kirim" class="button">
+    <p><a href="HTML.html" class="back-button" style="text-decoration: none;">Kembali ke Halaman Utama</a></p>
+  </form>
+</div>
+
+<script>
+  function validateForm() {
+    const plat_kendaraan = document.getElementById("plat_kendaraan").value;
+    const Nomor_mesin = document.getElementById("Nomor_Mesin").value;
+    const Nomor_rangka = document.getElementById("Nomor_rangka").value;
+
+    if (!plat_kendaraan || !Nomor_mesin || !Nomor_rangka) {
+      alert("Harap isi semua kolom dengan lengkap.");
+      return false; // Jangan submit form jika ada yang kosong
+    }
+
+    // Jika semua kolom terisi, izinkan submit form
+    return true;
+  }
+function toggleNav() {
+  const navBar = document.querySelector('.nav-bar');
+  const hamburger = document.querySelector('.hamburger');
+  navBar.classList.toggle('active');
+  hamburger.classList.toggle('active');
+}
+
+function closeNav() {
+  const navBar = document.querySelector('.nav-bar');
+  const hamburger = document.querySelector('.hamburger');
+  navBar.classList.remove('active');
+  hamburger.classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navBar = document.querySelector('.nav-bar');
+  let isDragging = false;
+  let initialY;
+  let currentY;
+
+  navBar.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    initialY = e.clientY - navBar.scrollTop;
+  });
+
+  navBar.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      currentY = e.clientY - initialY;
+      navBar.scrollTop = currentY;
+    }
+  });
+
+  navBar.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+});
+</script>
+</body>
+</html>
